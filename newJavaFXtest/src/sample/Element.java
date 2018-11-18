@@ -5,11 +5,13 @@ import javafx.scene.control.Label;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Element extends Label implements Runnable{
 
+    protected static ArrayList<Element> eleArr = new ArrayList<Element>();
     /*----------地板---------*/
-    public int floor = 350;
+    protected int floor = 490;
     /*-----移動用Timer-----*/
     protected Timer timer;
     /*----此元件y位置------*/
@@ -25,7 +27,7 @@ public class Element extends Label implements Runnable{
     /*----------寬 高--------*/
     protected int width,height;
     /*-------跳躍力-------*/
-    protected int jumpPower = 15;
+    protected int jumpPower = 20;
     /*---可不可跳躍布林值----*/
     protected boolean canJump = false;
     /*--------------------*/
@@ -36,6 +38,7 @@ public class Element extends Label implements Runnable{
         this.height = height;
         this.setStyle(style);
         this.setPrefSize(width,height);
+        eleArr.add(this);
     }
     /*===================================================*/
 
@@ -58,4 +61,9 @@ public class Element extends Label implements Runnable{
     }
     /*====================================================*/
 
+    /*=====================取得eleArr======================*/
+    public Element getEleArr(int index){
+        return eleArr.get(index);
+    }
+     /*====================================================*/
 }

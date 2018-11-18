@@ -15,12 +15,11 @@ public class Ball extends Element{
     public Ball(int width,int height,String style){
         super(width,height,style);
 
-        /*------------延遲用Timer-------------*/
+        /*------------延遲上升用Timer-------------*/
         timerDelay = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (count >= 0){
-                    System.out.println("delay");
+                if (count > 3){
                     layoutY = layoutY - count;
                     setLayoutY(layoutY);
                     count--;
@@ -29,11 +28,10 @@ public class Ball extends Element{
                 }
             }
         });
-        /*------------上升用Timer------------*/
+        /*------------移動用Timer------------*/
         timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("all");
                 /*------自由落體------*/
                 if (v <= maxV){
                     lawOfMotion();
@@ -42,6 +40,7 @@ public class Ball extends Element{
                     setLayoutY(layoutY);
                 }
 
+                collisionDetection();
 
             }
         });
@@ -101,5 +100,17 @@ public class Ball extends Element{
     }
     /*====================================================*/
 
-
+    /*======================碰撞偵測=======================*/
+    public void collisionDetection(){
+        for (int i=1; i<eleArr.size(); i++){
+            if ( (this.getLayoutY()+height)>=(eleArr.get(i).getLayoutY()) &&
+                    (this.getLayoutY()+height)<=(eleArr.get(i).getLayoutY()+eleArr.get(i).getHeight())&&
+                    (this.getLayoutX()+width)>=(eleArr.get(i).getLayoutX()) &&
+                    (this.getLayoutX()+width)>=(eleArr.get(i).getLayoutX()+eleArr.get(i).getWidth())
+                    ){
+                eleArr.get(i).setStyle("-fx-background-color:red;");
+            }
+        }
+    }
+    /*====================================================*/
 }

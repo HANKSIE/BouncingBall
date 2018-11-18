@@ -25,9 +25,27 @@ public class Main extends Application { //繼承javafx.application.Application�
     /*----------------------物件----------------------*/
     private Ball ball = new Ball(36,36,ballStyle);
     private Pillar pillar = new Pillar(30,100,pillarStyle);
+    private Pillar pillar2 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar3 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar4 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar5 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar6 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar7 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar8 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar9 = new Pillar(30,100,pillarStyle);
+    private Pillar pillar10 = new Pillar(30,100,pillarStyle);
     /*--------------------執行緒物件-------------------*/
     private Thread ballThread = new Thread(ball);
     private Thread pillarThread = new Thread(pillar);
+    private Thread pillarThread2 = new Thread(pillar2);
+    private Thread pillarThread3 = new Thread(pillar3);
+    private Thread pillarThread4 = new Thread(pillar4);
+    private Thread pillarThread5 = new Thread(pillar5);
+    private Thread pillarThread6 = new Thread(pillar6);
+    private Thread pillarThread7 = new Thread(pillar7);
+    private Thread pillarThread8 = new Thread(pillar8);
+    private Thread pillarThread9 = new Thread(pillar9);
+    private Thread pillarThread10 = new Thread(pillar10);
     /*-----------------------------------------------*/
 
     @Override
@@ -49,9 +67,55 @@ public class Main extends Application { //繼承javafx.application.Application�
         pillar.setLayoutX(1000);
         pillar.setLayoutY(400-pillar.getLayoutY());
         pillarThread.start();
+
+        pillar2.setLayoutX(500);
+        pillar2.setLayoutY(0);
+        pillarThread2.start();
+
+        pillar3.setLayoutX(1300);
+        pillar3.setLayoutY(400-pillar3.getLayoutY());
+        pillarThread3.start();
+
+        pillar4.setLayoutX(1700);
+        pillar4.setLayoutY(400-pillar4.getLayoutY());
+        pillarThread4.start();
+
+        pillar5.setLayoutX(2100);
+        pillar5.setLayoutY(0);
+        pillarThread5.start();
+
+        pillar6.setLayoutX(2500);
+        pillar6.setLayoutY(400-pillar6.getLayoutY());
+        pillarThread6.start();
+
+        pillar7.setLayoutX(2700);
+        pillar7.setLayoutY(0);
+        pillarThread7.start();
+
+        pillar8.setLayoutX(2900);
+        pillar8.setLayoutY(400-pillar8.getLayoutY());
+        pillarThread8.start();
+
+        pillar9.setLayoutX(1000);
+        pillar9.setLayoutY(0);
+        pillarThread9.start();
+
+        pillar10.setLayoutX(1000);
+        pillar10.setLayoutY(400-pillar.getLayoutY());
+        pillarThread10.start();
+
         /*-------面板加入物件-------*/
         anchorPane.getChildren().add(ball);
         anchorPane.getChildren().add(pillar);
+        anchorPane.getChildren().add(pillar2);
+        anchorPane.getChildren().add(pillar3);
+        anchorPane.getChildren().add(pillar4);
+        anchorPane.getChildren().add(pillar5);
+        anchorPane.getChildren().add(pillar6);
+        anchorPane.getChildren().add(pillar7);
+        anchorPane.getChildren().add(pillar8);
+        anchorPane.getChildren().add(pillar9);
+        anchorPane.getChildren().add(pillar10);
         /*------------------------*/
 
         primaryStage.setTitle("game");//設定視窗標題
