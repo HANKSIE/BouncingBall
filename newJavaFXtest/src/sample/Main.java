@@ -23,17 +23,17 @@ public class Main extends Application { //繼承javafx.application.Application�
     private String ballStyle="-fx-background-image:url(images/ball.png);";
     private String pillarStyle = "-fx-background-color:white;";
     /*----------------------物件----------------------*/
-    private Ball ball = new Ball(36,36,ballStyle);
-    private Pillar pillar = new Pillar(30,100,pillarStyle);
-    private Pillar pillar2 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar3 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar4 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar5 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar6 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar7 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar8 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar9 = new Pillar(30,100,pillarStyle);
-    private Pillar pillar10 = new Pillar(30,100,pillarStyle);
+    private Ball ball = new Ball(35,35,90,90,ballStyle);
+    private Pillar pillar = new Pillar(30,100,1000,400,pillarStyle);
+    private Pillar pillar2 = new Pillar(30,100,1600,400,pillarStyle);
+    private Pillar pillar3 = new Pillar(30,100,2000,0,pillarStyle);
+    private Pillar pillar4 = new Pillar(30,100,2300,400,pillarStyle);
+    private Pillar pillar5 = new Pillar(30,100,2400,400,pillarStyle);
+    private Pillar pillar6 = new Pillar(30,100,2800,0,pillarStyle);
+    private Pillar pillar7 = new Pillar(30,100,3300,400,pillarStyle);
+    private Pillar pillar8 = new Pillar(30,100,3400,0,pillarStyle);
+    private Pillar pillar9 = new Pillar(30,100,3800,400,pillarStyle);
+    private Pillar pillar10 = new Pillar(30,100,4000,0,pillarStyle);
     /*--------------------執行緒物件-------------------*/
     private Thread ballThread = new Thread(ball);
     private Thread pillarThread = new Thread(pillar);
@@ -60,48 +60,18 @@ public class Main extends Application { //繼承javafx.application.Application�
         gameScene = new Scene(root,500,500);
         setKeyboardEvent();
         /*----------ball----------*/
-        ball.setLayoutX(90);
-        ball.setLayoutY(90);
+
         ballThread.start();
         /*----------障礙物---------*/
-        pillar.setLayoutX(1000);
-        pillar.setLayoutY(400-pillar.getLayoutY());
         pillarThread.start();
-
-        pillar2.setLayoutX(500);
-        pillar2.setLayoutY(0);
         pillarThread2.start();
-
-        pillar3.setLayoutX(1300);
-        pillar3.setLayoutY(400-pillar3.getLayoutY());
         pillarThread3.start();
-
-        pillar4.setLayoutX(1700);
-        pillar4.setLayoutY(400-pillar4.getLayoutY());
         pillarThread4.start();
-
-        pillar5.setLayoutX(2100);
-        pillar5.setLayoutY(0);
         pillarThread5.start();
-
-        pillar6.setLayoutX(2500);
-        pillar6.setLayoutY(400-pillar6.getLayoutY());
         pillarThread6.start();
-
-        pillar7.setLayoutX(2700);
-        pillar7.setLayoutY(0);
         pillarThread7.start();
-
-        pillar8.setLayoutX(2900);
-        pillar8.setLayoutY(400-pillar8.getLayoutY());
         pillarThread8.start();
-
-        pillar9.setLayoutX(1000);
-        pillar9.setLayoutY(0);
         pillarThread9.start();
-
-        pillar10.setLayoutX(1000);
-        pillar10.setLayoutY(400-pillar.getLayoutY());
         pillarThread10.start();
 
         /*-------面板加入物件-------*/
@@ -122,6 +92,7 @@ public class Main extends Application { //繼承javafx.application.Application�
         primaryStage.setScene(gameScene);//設定Stage要使用的Scene，並且用Scene()建構視窗長寬
         primaryStage.show();
 
+        System.out.println(Element.eleArr.size());
     }
 
     public void setKeyboardEvent(){
@@ -135,7 +106,16 @@ public class Main extends Application { //繼承javafx.application.Application�
                     case UP:
                         ball.setCanJump(true);
                         break;
-
+                    case LEFT:
+//                        for (int i=1; i<Element.eleArr.size(); i++){
+//                            Element.eleArr.get(i).setLayoutX(Element.eleArr.get(i).getLayoutX()+20);
+//                        }
+                        break;
+                    case RIGHT:
+//                        for (int i=1; i<Element.eleArr.size(); i++){
+//                            Element.eleArr.get(i).setLayoutX(Element.eleArr.get(i).getLayoutX()-20);
+//                        }
+                        break;
                 }
 
             }

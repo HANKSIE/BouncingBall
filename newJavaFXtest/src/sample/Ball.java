@@ -6,22 +6,22 @@ import java.awt.event.ActionListener;
 
 public class Ball extends Element{
 
+    private Ball thisRef = this;
     /*----------上升用變數-----------*/
     private int count = jumpPower;
     /*----------延遲用Timer---------*/
     private Timer timerDelay;
     /*-----------------------------*/
 
-    public Ball(int width,int height,String style){
-        super(width,height,style);
+    public Ball(int width,int height,int layoutX,int layoutY,String style){
+        super(width,height,layoutX,layoutY,style);
 
         /*------------延遲上升用Timer-------------*/
         timerDelay = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (count > 3){
-                    layoutY = layoutY - count;
-                    setLayoutY(layoutY);
+                    thisRef.setLayoutY(thisRef.getLayoutY()-count);
                     count--;
                 }else {
                     timerDelay.stop();
@@ -37,7 +37,6 @@ public class Ball extends Element{
                     lawOfMotion();
                 }else {
                     v = maxV;
-                    setLayoutY(layoutY);
                 }
 
                 collisionDetection();
@@ -56,14 +55,13 @@ public class Ball extends Element{
 
     /*======================跳躍&掉落======================*/
     public void lawOfMotion(){
+
         /*------如果可以跳------*/
         if (canJump){
 
-//            System.out.println("isRaise");
             /*===============上升=============*/
 
             if (count >= 0){
-                System.out.println("here");
                 timerDelay.start();
             }
 
@@ -80,36 +78,54 @@ public class Ball extends Element{
             /*----------------------------*/
 
         } else {
-
             /*----------如果掉到地板上----------*/
-            if (layoutY < floor-height){
+            if (this.getLayoutY() < floor-this.getHeight()){
                 /*------------下降------------*/
                 v += v*g;
-                layoutY = layoutY + v;
-                setLayoutY(layoutY);
+                this.setLayoutY(this.getLayoutY()+v);
                 /*--------------------------*/
             }else {
-                layoutY = floor-height;
-                setLayoutY(floor-height);
+                this.setLayoutY(floor-this.getHeight());
             }
 
         }
-
-//        System.out.println("Y:"+" "+getLayoutY());
 
     }
     /*====================================================*/
 
     /*======================碰撞偵測=======================*/
     public void collisionDetection(){
+
         for (int i=1; i<eleArr.size(); i++){
-            if ( (this.getLayoutY()+height)>=(eleArr.get(i).getLayoutY()) &&
+            if ( (this.getLayoutY()+this.getHeight())>=(eleArr.get(i).getLayoutY()) &&
                     this.getLayoutY()<=(eleArr.get(i).getLayoutY()+eleArr.get(i).getHeight())&&
-                    (this.getLayoutX()+width)>=(eleArr.get(i).getLayoutX()) &&
+                    (this.getLayoutX()+this.getWidth())>=(eleArr.get(i).getLayoutX()) &&
                     this.getLayoutX()<=(eleArr.get(i).getLayoutX()+eleArr.get(i).getWidth())
                     ){
+
                 eleArr.get(i).setStyle("-fx-background-color:red;");
+                stopTimer();
+
+            }else {
+                startTimer();
             }
+        }
+
+    }
+    /*====================================================*/
+
+    /*======================timer停用======================*/
+    public void stopTimer(){
+        for (int j=1; j<eleArr.size(); j++){
+            eleArr.get(j).timer.stop();
+        }
+    }
+    /*====================================================*/
+
+    /*======================timer啟用======================*/
+    public void startTimer(){
+        for (int j=1; j<eleArr.size(); j++){
+            eleArr.get(j).timer.start();
         }
     }
     /*====================================================*/

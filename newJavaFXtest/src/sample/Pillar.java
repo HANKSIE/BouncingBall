@@ -3,11 +3,14 @@ package sample;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Pillar extends Element {
 
-    public Pillar(int width, int height, String style) {
-        super(width, height, style);
+    private Pillar thisRef = this;
+
+    public Pillar(int width, int height, int layoutX,int layoutY,String style) {
+        super(width, height, layoutX, layoutY, style);
     }
 
     @Override
@@ -15,10 +18,11 @@ public class Pillar extends Element {
         timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setLayoutX(getLayoutX()-20);
+                thisRef.setLayoutX(thisRef.getLayoutX()-20);
             }
         });
         timer.start();
     }
+
 
 }
