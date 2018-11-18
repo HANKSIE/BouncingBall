@@ -104,9 +104,9 @@ public class Ball extends Element{
     public void collisionDetection(){
         for (int i=1; i<eleArr.size(); i++){
             if ( (this.getLayoutY()+height)>=(eleArr.get(i).getLayoutY()) &&
-                    (this.getLayoutY()+height)<=(eleArr.get(i).getLayoutY()+eleArr.get(i).getHeight())&&
+                    this.getLayoutY()<=(eleArr.get(i).getLayoutY()+eleArr.get(i).getHeight())&&
                     (this.getLayoutX()+width)>=(eleArr.get(i).getLayoutX()) &&
-                    (this.getLayoutX()+width)>=(eleArr.get(i).getLayoutX()+eleArr.get(i).getWidth())
+                    this.getLayoutX()<=(eleArr.get(i).getLayoutX()+eleArr.get(i).getWidth())
                     ){
                 eleArr.get(i).setStyle("-fx-background-color:red;");
             }
